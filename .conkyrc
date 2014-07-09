@@ -1,4 +1,4 @@
-\background yes
+background yes
 use_xft yes
 xftalpha 0.6
 own_window true
