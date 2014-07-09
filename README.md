@@ -1,4 +1,4 @@
 configs
 =======
 
-various config files
+Various config files
