@@ -62,9 +62,9 @@ Cache $alignr $cached
 # NETWORK
 ${template3 eth0 ETH0}${template3 wlan0 WLAN0}
 
-${template0 AUDACIOUS}
-${font Open Sans:bold:size=9}${audacious_status}:
-${font ipapGothic:size=9}${audacious_position}/${audacious_length}
+#${template0 AUDACIOUS}
+#${font Open Sans:bold:size=9}${audacious_status}:
+#${font ipapGothic:size=9}${audacious_position}/${audacious_length}
 
 # TOP
 ${template0 TOP}
