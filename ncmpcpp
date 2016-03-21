@@ -1,0 +1,21 @@
+#user_interface = "alternative"
+
+visualizer_type = "spectrum"
+
+visualizer_look = "•❚"
+
+header_visibility = "no"
+
+visualizer_in_stereo = "no"
+
+titles_visibility = "no"
+
+autocenter_mode = "yes"
+
+song_columns_list_format = "(30)[blue]{a} (30)[white]{b} (30)[red]{t}"
+
+#progressbar_boldness = "no"
+
+progressbar_look = "⏤⦁-"
+
+#statusbar_visibility = "no"
