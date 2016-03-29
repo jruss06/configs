@@ -11,6 +11,7 @@ local beautiful = require("beautiful")
 local naughty = require("naughty")
 local menubar = require("menubar")
 vicious = require("vicious")
+require ("volume")
 
 -- {{{ Error handling
 -- Check if awesome encountered an error during startup and fell back to
@@ -42,7 +43,7 @@ end
 beautiful.init(awful.util.getdir("config") .. "/themes/default/theme.lua")
 
 -- This is used later as the default terminal and editor to run.
-terminal = "gnome-terminal"
+terminal = "urxvt"
 editor = os.getenv("EDITOR") or "nano"
 editor_cmd = terminal .. " -e " .. editor
 
@@ -111,15 +112,15 @@ menubar.utils.terminal = terminal -- Set the terminal for applications that requ
 -- Initialize widget
 cpuwidget = wibox.widget.textbox()
 -- Register widget
-vicious.register(cpuwidget, vicious.widgets.cpu, 'cpu:<span color="#3299BB">  $1% </span> ')
+vicious.register(cpuwidget, vicious.widgets.cpu, 'cpu:<span color="#22a7f0">  $1% </span> ')
 -- Initialize widget
 memwidget = wibox.widget.textbox()
 
 -- Register widget
-vicious.register(memwidget, vicious.widgets.mem, '  mem:<span color="#3299BB"> $2MB  </span> ', 13)
+vicious.register(memwidget, vicious.widgets.mem, '  mem:<span color="#22a7f0"> $2MB  </span> ', 13)
 
 mytextbox = wibox.widget.textbox()
-mytextbox:set_markup('<span color="#3299BB"> | </span>')
+mytextbox:set_markup('<span color="#22a7f0"> | </span>')
 -- {{{ Wibox
 -- Create a textclock widget
 mytextclock = awful.widget.textclock(" %b %d %H:%M ")
@@ -193,9 +194,9 @@ for s = 1, screen.count() do
     mytasklist[s] = awful.widget.tasklist(s, awful.widget.tasklist.filter.focused, mytasklist.buttons)
 
     -- Create the wibox
-    mywibox[s] = awful.wibox({ position = "top", height = "22", screen = s })
+    mywibox[s] = awful.wibox({ position = "top", height = "24", screen = s })
  
-   -- mywiboxtop[s] = awful.wibox({ position = "bottom", height = "18", width = "40", align = "right", screen = s })
+   --mywiboxtop[s] = awful.wibox({ position = "bottom", height = "18", screen = s })
 
     -- Widgets that are aligned to the left
     local left_layout = wibox.layout.fixed.horizontal()
@@ -205,8 +206,10 @@ for s = 1, screen.count() do
 
     -- Widgets that are aligned to the right
     local right_layout = wibox.layout.fixed.horizontal()
+    right_layout:add(volume_widget)
     right_layout:add(memwidget)
     right_layout:add(cpuwidget)
+   -- if s == 1 then right_layout:add(wibox.widget.systray()) end
     right_layout:add(mytextclock)
 
    -- right_layout:add(mylayoutbox[s])
@@ -220,10 +223,12 @@ for s = 1, screen.count() do
     mywibox[s]:set_widget(layout)
     --mywiboxtop[s].y=3
     --mywibox[s].x=460	 
-    --awful.screen.padding(screen[s],{top = '25', left = '15', right = '15', bottom = '10'})
+    awful.screen.padding(screen[s],{top = '10', left = '15', right = '15', bottom = '10'})
     if s == 1 then right_layout:add(wibox.widget.systray()) end
+     --local layoutbottom = wibox.layout.align.horizontal()
+     --layoutbottom:set_left(mytasklist[s])
 
-
+    --mywiboxtop[s]:set_widget(layoutbottom)
 
 end
 -- }}}
@@ -238,11 +243,22 @@ root.buttons(awful.util.table.join(
 
 -- {{{ Key bindings
 globalkeys = awful.util.table.join(
-    awful.key({ modkey,           }, "Left",   awful.tag.viewprev       ),
-    awful.key({ modkey,           }, "Right",  awful.tag.viewnext       ),
+
+    awful.key({ modkey,           }, "[",   awful.tag.viewprev       ),
+    awful.key({ modkey,           }, "]",  awful.tag.viewnext       ),
     awful.key({ modkey,           }, "Escape", awful.tag.history.restore),
 
-    awful.key({ modkey,           }, "j",
+   awful.key({ modkey }, "Next",  function () if client.focus  then awful.client.moveresize( 20,  20, -40, -40) end end),
+   awful.key({ modkey }, "Prior", function () if client.focus then awful.client.moveresize(-20, -20,  40,  40) end end),
+   awful.key({ modkey }, "Down",  function () if client.focus then awful.client.moveresize(  0,  20,   0,   0) end end),
+   awful.key({ modkey }, "Up",    function () if client.focus then awful.client.moveresize(  0, -20,   0,   0)end end),
+   awful.key({ modkey }, "Left",  function () if client.focus then awful.client.moveresize(-20,   0,   0,   0) end end),
+   awful.key({ modkey }, "Right", function () if client.focus then awful.client.moveresize( 20,   0,   0,   0) end end),
+   awful.key({ modkey, "Shift" }, "Up",  function () if client.focus  then awful.client.moveresize( 0,  0, 0, -40) end end),
+   awful.key({ modkey, "Shift" }, "Down", function () if client.focus then awful.client.moveresize(0, 0,  0,  40) end end),
+
+
+	awful.key({ modkey,           }, "j",
         function ()
             awful.client.focus.byidx( 1)
             if client.focus then client.focus:raise() end
@@ -296,7 +312,9 @@ globalkeys = awful.util.table.join(
               end),
     -- Menubar
     awful.key({ modkey }, "p", function() awful.util.spawn ("dmenu_run") end)
+
 )
+
 
 clientkeys = awful.util.table.join(
     awful.key({ modkey,           }, "f",      function (c) c.fullscreen = not c.fullscreen  end),
@@ -317,7 +335,6 @@ clientkeys = awful.util.table.join(
             c.maximized_vertical   = not c.maximized_vertical
         end)
 )
-
 
 
 awful.util.spawn_with_shell("/home/emiya/Public/run_once nm-applet")
@@ -401,6 +418,12 @@ awful.rules.rules = {
       properties = { floating = true } },
     { rule = { class = "Tint2" },
       properties = { unmanaged = true, border_width= "0", type="dock" } },
+    { rule = { class = "URxvt" },
+      properties = {width = "700" , height = "600" } },
+    { rule = { class = "URxvt" },
+      properties = {x = "100" , y = "100" } },
+
+
 
     -- Set Firefox to always map on tags number 2 of screen 1.
     -- { rule = { class = "Firefox" },
