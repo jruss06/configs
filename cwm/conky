@@ -1,0 +1,10 @@
+background no
+out_to_console yes
+out_to_x no
+update_interval 1.0
+total_run_times 0
+use_spacer none
+ 
+TEXT
+
+%{l} %{F\#db0a5b} ${exec xtitle | cut -c-60} %{F-} %{c} ${if_mpd_playing} Playing: ${mpd_title} - ${mpd_artist} ${endif} %{r} %{F\#55aeae} cpu: ${cpu cpu0}% %{F-} | %{F\#DEDEDE} mem: $mem  %{F-}%{F\#000000}%{B\#db0a5b} ${time %a %b %d %I:%M }%{B-}
