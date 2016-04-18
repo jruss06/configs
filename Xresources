@@ -2,37 +2,43 @@ Xft.dpi: 96
 
 !urxvt color scheme:
 
-URxvt*background: #191919
-URxvt*foreground: #DEDEDE
 
-URxvt*colorUL: #86a2b0
+*background: #B36D7B
+*foreground: #FFFFFF
 
-! black
-URxvt*color0  : #3e464e
-URxvt*color8  : #3e464e
-! red
-URxvt*color1  : #db0a5b
-URxvt*color9  : #db0a5b
-! green
-URxvt*color2  : #3fc380
-URxvt*color10 : #3fc380
-! yellow
-URxvt*color3  : #f2784b
-URxvt*color11 : #f2784b
-! blue
-URxvt*color4  : #22a7f0
-URxvt*color12 : #22a7f0
-! magenta
-URxvt*color5  : #f64747
-URxvt*color13 : #f64747
-! cyan
-URxvt*color6  : #55aeae
-URxvt*color14 : #55aeae
-! white
-URxvt*color7  : #ecf0f1
-URxvt*color15 : #ecf0f1
+*fadeColor:#B36D7B
 
-!urxvt fonts: 
+!! black dark/light
+*color0:  #073642
+*color8:  #073642
+
+!! red dark/light
+*color1:  #FFA7A5
+*color9:  #FFA7A5
+
+!! green dark/light
+*color2:  #B6D5AD
+*color10: #B6D5AD
+
+!! yellow dark/light
+*color3:    #F2D373
+*color11:   #F2D373
+
+!! blue dark/light
+*color4:   #9FC4DE
+*color12:  #9FC4DE
+
+! magenta dark/light
+*color5:   #EC96D9
+*color13:  #EC96D9
+
+!! cyan dark/light
+*color6:   #BDF5F1
+*color14:  #BDF5F1
+
+!! white dark/light
+*color7:   #EEE8D5
+*color15:  #EEE8D5
 
 URxvt*font: xft:Dina:pixelsize=10
 URxvt*boldFont: xft:Dina:bold:pixelsize=10
@@ -40,7 +46,7 @@ URxvt*boldFont: xft:Dina:bold:pixelsize=10
 
 !urxvt extensions:
 
-URxvt.perl-ext-common: default,matcher,tabbedex,clipboard
+URxvt.perl-ext-common: default,matcher,clipboard
 
 !enabling clickable links:
 
@@ -55,6 +61,7 @@ URxvt*scrollBar: false
 URxvt*cursorBlink: true
 URxvt*cursorUnderline: true
 
+
 ! urxvt tabs settings:
 
 URxvt.tabbed.tabbar-fg: 2
@@ -66,3 +73,13 @@ URxvt.tabbed.new-button:  no
 URxvt.tabbed.title: no
 
 URxvt.geometry: 100x35
+URxvt.clipboard.autocopy:true
+
+! scroll in relation to buffer (with mouse scroll or Shift+Page Up)
+URxvt*scrollWithBuffer: true
+
+! scroll back to the bottom on keypress
+URxvt*scrollTtyKeypress: true
+
+URxvt.secondaryScreen: 1
+URxvt.secondaryScroll: 0
