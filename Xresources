@@ -3,7 +3,7 @@ Xft.dpi: 96
 !urxvt color scheme:
 
 
-*background: #B36D7B
+*background: #8E3554
 *foreground: #FFFFFF
 
 *fadeColor:#B36D7B
@@ -17,8 +17,8 @@ Xft.dpi: 96
 *color9:  #FFA7A5
 
 !! green dark/light
-*color2:  #B6D5AD
-*color10: #B6D5AD
+*color2:  #9AB48E
+*color10: #9AB48E
 
 !! yellow dark/light
 *color3:    #F2D373
