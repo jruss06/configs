@@ -12,10 +12,14 @@ import XMonad.Hooks.ManageHelpers
 import XMonad.Actions.CycleWS
 import XMonad.Layout.ToggleLayouts
 import XMonad.Actions.FloatKeys
+import XMonad.Layout.Spacing
+import XMonad.Layout.Renamed
 
 myManageHook = composeAll
    [ className =? "mpv"  --> doFloat  
    , isFullscreen --> doFullFloat 
+   , className =? "panel" -->  doIgnore 
+   , className =? "trayer" --> doIgnore
    , manageDocks 
    ]
    --where viewShift = doF . liftM2 (.) W.greedyView W.shift 
@@ -25,16 +29,17 @@ main = do
      xmproc <- spawnPipe "xmobar"
      xmonad $ defaultConfig
         { manageHook = myManageHook <+> manageHook defaultConfig
-        , layoutHook = avoidStruts  ( myLayout ||| layoutHook defaultConfig) 
+        , layoutHook = avoidStruts  ( myLayout ||| layoutHook defaultConfig)  
         ,handleEventHook = mconcat
                          [ docksEventHook
                          , handleEventHook defaultConfig ]
 	,logHook = dynamicLogWithPP xmobarPP
                         { ppOutput = hPutStrLn xmproc
-                        , ppTitle = xmobarColor "green" "" . shorten 50
+                        , ppTitle = xmobarColor "#9EEE81" "" . shorten 50
                         }        
         , modMask = mod4Mask
 	,terminal = "urxvt"
+	,borderWidth = 3
         }`additionalKeys`
  	[  ((mod4Mask, xK_x), kill)
         , ((mod4Mask , xK_p), spawn "dmenu_extended_run")  
@@ -51,5 +56,6 @@ main = do
  	, ((mod4Mask .|. shiftMask, xK_Down    ), withFocused (keysMoveWindow (0,10) ))
 	]
       
-myLayout = toggleLayouts Full (ResizableTall 1 (3/100) (1/2) [] )  	
-
+myLayout = toggleLayouts Full $ renamed [Replace "fsociety"] $ goodLayout  
+goodLayout = spacing 5 $ ResizableTall 1 (3/100) (1/2) []
+	  
