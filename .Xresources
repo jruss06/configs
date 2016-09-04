@@ -1,39 +1,40 @@
 ! special
-*.foreground:   #8a8986
-*.background:   #28211c
-*.cursorColor:  #8a8986
+*.foreground:   #9b9081
+*.background:   #181b20
+*.cursorColor:  #9b9081
 
 ! black
-*.color0:       #28211c
-*.color8:       #666666
+*.color0:       #353535
+*.color8:       #5f5f5f
 
 ! red
-*.color1:       #99472f
-*.color9:       #e27554
+*.color1:       #744b40
+*.color9:       #785850
 
 ! green
-*.color2:       #54be0d
-*.color10:      #54be0d
+*.color2:       #97802e
+*.color10:      #a18a34
 
 ! yellow
-*.color3:       #f9ee98
-*.color11:      #c0b669
+*.color3:       #765636
+*.color11:      #776049
 
 ! blue
-*.color4:       #5ea6ea
-*.color12:      #5ea6ea
+*.color4:       #7a5d40
+*.color12:      #b76513
 
 ! magenta
-*.color5:       #9b859d
-*.color13:      #9b859d
+*.color5:       #6b4a49
+*.color13:      #6f5a59
 
 ! cyan
-*.color6:       #7a9dc3
-*.color14:      #7d93ac
+*.color6:       #435861
+*.color14:      #5f8da6
 
 ! white
-*.color7:       #8a8986
-*.color15:      #67553d
+*.color7:       #b3b3b3
+*.color15:      #cdcdcd
+
 
 URxvt.geometry: 75x22
 
