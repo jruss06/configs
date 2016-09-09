@@ -21,7 +21,7 @@
 
 ! blue
 *.color4:       #7a5d40
-*.color12:      #b76513
+*.color12:      #8f5923
 
 ! magenta
 *.color5:       #6b4a49
@@ -35,8 +35,7 @@
 *.color7:       #b3b3b3
 *.color15:      #cdcdcd
 
-
-URxvt.geometry: 75x22
+URxvt.geometry: 85x24
 
 
 Xft.dpi:        96
@@ -58,7 +57,7 @@ URxvt*scrollTtyKeypress: true
 URxvt.secondaryScreen: 1
 URxvt.secondaryScroll: 0
 
-URxvt*font: xft:Dina:size=11
+URxvt*font: xft:bitocra13:size=8
 
 URxvt.perl-ext-common: default,matcher,clipboard
 URxvt.url-launcher: /usr/bin/xdg-open
@@ -75,3 +74,23 @@ Rxvt.keysym.Shift-Control-V: perl:clipboard:paste
 URxvt.iso14755: False
  
 URxvt.saveLines: 8192
+
+URxvt.internalBorder: 8
+
+! ------------------------------------------------------------------------------
+! ROFI Color theme
+! ------------------------------------------------------------------------------
+! Use extended color scheme
+rofi.color-enabled:                  true
+! Color scheme for normal row
+rofi.color-normal:                   argb:00000000,  #D8DEE9 , argb:00000000,  #FAC863 ,  #1B2B34
+! Color scheme for urgent row
+rofi.color-urgent:                   argb:00000000,  #F99157 , argb:00000000,  #F99157 ,  #1B2B34
+! Color scheme for active row
+rofi.color-active:                   argb:00000000,  #6699CC , argb:00000000,  #6699CC ,  #1B2B34
+! Color scheme window
+rofi.color-window:                   argb:ee222222,  #FAC863 ,  #FAC863
+! Separator style (none, dash, solid)
+rofi.separator-style:                solid
+rofi.font: terminus 8
+
