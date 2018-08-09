@@ -1,96 +1,55 @@
-! special
-*.foreground:   #9b9081
-*.background:   #181b20
-*.cursorColor:  #9b9081
+URxvt*font: xft:Hermit:pixelsize=11
+URxvt*boldFont: xft:Hermit:bold:pixelsize=11
+
+*.foreground: rgb:22/ea/e0
+*.background: rgb:22/18/30
 
 ! black
-*.color0:       #353535
-*.color8:       #5f5f5f
+*.color0:       #272822
+*.color8:       #75715e
 
 ! red
-*.color1:       #744b40
-*.color9:       #785850
+*.color1:       #f92672
+*.color9:       #f92672
 
 ! green
-*.color2:       #97802e
-*.color10:      #a18a34
+*.color2:       #a6e22e
+*.color10:      #a6e22e
 
 ! yellow
-*.color3:       #765636
-*.color11:      #776049
+*.color3:       #f4bf75
+*.color11:      #f4bf75
 
 ! blue
-*.color4:       #7a5d40
-*.color12:      #8f5923
+*.color4:       #66d9ef
+*.color12:      #66d9ef
 
 ! magenta
-*.color5:       #6b4a49
-*.color13:      #6f5a59
+*.color5:       #ae81ff
+*.color13:      #ae81ff
 
 ! cyan
-*.color6:       #435861
-*.color14:      #5f8da6
+*.color6:       #a1efe4
+*.color14:      #a1efe4
 
 ! white
-*.color7:       #b3b3b3
-*.color15:      #cdcdcd
+*.color7:       #f8f8f2
+*.color15:      #f9f8f5
 
-URxvt.geometry: 85x24
+! right hand side scrollbar...
+xterm*rightScrollBar: false
+xterm*ScrollBar: false
 
+! stop output to terminal from jumping down to bottom of scroll again
+xterm*scrollTtyOutput: false
 
-Xft.dpi:        96
-Xft.antialias:  true
-Xft.rgba:       rgb
-Xft.hinting:    true
-Xft.hintstyle:  hintslight
+Xft.dpi:                    96
+Xft.antialias:              true
+Xft.rgba:                   rgb
+Xft.hinting:                true
+Xft.hintstyle: 		    hintslight
 
+URxvt.internalBorder: 10
+URxvt*saveLines: 12000
 
-! do not scroll with output
-URxvt*scrollTtyOutput: false
-
-! scroll in relation to buffer (with mouse scroll or Shift+Page Up)
-URxvt*scrollWithBuffer: true
-
-! scroll back to the bottom on keypress
-URxvt*scrollTtyKeypress: true
-
-URxvt.secondaryScreen: 1
-URxvt.secondaryScroll: 0
-
-URxvt*font: xft:bitocra13:size=8
-
-URxvt.perl-ext-common: default,matcher,clipboard
-URxvt.url-launcher: /usr/bin/xdg-open
-URxvt.matcher.button: 1
-
-! Disable scrollbar
 URxvt*scrollBar: false
-
-URxvt.clipboard.autocopy: true
-URxvt.keysym.M-c: perl:clipboard:copy
-URxvt.keysym.M-C-v: perl:clipboard:paste_escaped
-Rxvt.keysym.Shift-Control-V: perl:clipboard:paste
- 
-URxvt.iso14755: False
- 
-URxvt.saveLines: 8192
-
-URxvt.internalBorder: 8
-
-! ------------------------------------------------------------------------------
-! ROFI Color theme
-! ------------------------------------------------------------------------------
-! Use extended color scheme
-rofi.color-enabled:                  true
-! Color scheme for normal row
-rofi.color-normal:                   argb:00000000,  #D8DEE9 , argb:00000000,  #FAC863 ,  #1B2B34
-! Color scheme for urgent row
-rofi.color-urgent:                   argb:00000000,  #F99157 , argb:00000000,  #F99157 ,  #1B2B34
-! Color scheme for active row
-rofi.color-active:                   argb:00000000,  #6699CC , argb:00000000,  #6699CC ,  #1B2B34
-! Color scheme window
-rofi.color-window:                   argb:ee222222,  #FAC863 ,  #FAC863
-! Separator style (none, dash, solid)
-rofi.separator-style:                solid
-rofi.font: terminus 8
-
