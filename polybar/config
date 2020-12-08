@@ -1,314 +1,145 @@
-;==========================================================
-;
-;
-;   ██████╗  ██████╗ ██╗  ██╗   ██╗██████╗  █████╗ ██████╗
-;   ██╔══██╗██╔═══██╗██║  ╚██╗ ██╔╝██╔══██╗██╔══██╗██╔══██╗
-;   ██████╔╝██║   ██║██║   ╚████╔╝ ██████╔╝███████║██████╔╝
-;   ██╔═══╝ ██║   ██║██║    ╚██╔╝  ██╔══██╗██╔══██║██╔══██╗
-;   ██║     ╚██████╔╝███████╗██║   ██████╔╝██║  ██║██║  ██║
-;   ╚═╝      ╚═════╝ ╚══════╝╚═╝   ╚═════╝ ╚═╝  ╚═╝╚═╝  ╚═╝
-;
-;
-;   To learn more about how to configure Polybar
-;   go to https://github.com/jaagr/polybar
-;
-;   The README contains alot of information
-;
-;==========================================================
+[bar/mybar]
+; Use either of the following command to list available outputs:
+; If unspecified, the application will pick the first one it finds.
+; $ polybar -m | cut -d ':' -f 1
+; $ xrandr -q | grep " connected" | cut -d ' ' -f1
+; If no monitor is given, the primary monitor is used if it exists
+monitor =
 
-[colors]
-;background = ${xrdb:color0:#222}
-background = #211830
-background-alt = #211830
-;foreground = ${xrdb:color7:#222}
-foreground = #22eae0
-foreground-alt = #555
-primary = #ffb52a
-secondary = #e60053
-alert = #bd2c40
+; Require the monitor to be in connected state
+; XRandR sometimes reports my monitor as being disconnected (when in use)
+monitor-strict = false
 
-[bar/left]
-monitor = HDMI-1
+; Tell the Window Manager not to configure the window.
+; Use this to detach the bar if your WM is locking its size/position.
+; Note: With this most WMs will no longer reserve space for 
+; the bar and it will overlap other windows. You need to configure
+; your WM to add a gap where the bar will be placed.
+override-redirect = false
+
+; Put the bar at the bottom of the screen
+bottom = false
+
+; Prefer fixed center position for the `modules-center` block. 
+; The center block will stay in the middle of the bar whenever
+; possible. It can still be pushed around if other blocks need
+; more space.
+; When false, the center block is centered in the space between 
+; the left and right block.
+fixed-center = true
+
+; Dimension defined as pixel value (e.g. 35) or percentage (e.g. 50%),
+; the percentage can optionally be extended with a pixel offset like so:
+; 50%:-10, this will result in a width or height of 50% minus 10 pixels
 width = 100%
-height = 27
-;offset-x = 1%
-;offset-y = 1%
-radius = 0.0
-fixed-center = false
+height = 25
 
-background = ${colors.background}
-foreground = ${colors.foreground}
+; Offset defined as pixel value (e.g. 35) or percentage (e.g. 50%)
+; the percentage can optionally be extended with a pixel offset like so:
+; 50%:-10, this will result in an offset in the x or y direction 
+; of 50% minus 10 pixels
+offset-x = 0
+offset-y = 0
 
-line-size = 3
+; Background ARGB color (e.g. #f00, #ff992a, #ddff1023)
+background = #fff
+
+; Foreground ARGB color (e.g. #f00, #ff992a, #ddff1023)
+foreground = #000
+
+; Under-/overline pixel size and argb color
+; Individual values can be defined using:
+;   {overline,underline}-size
+;   {overline,underline}-color
+line-size = 0
 line-color = #f00
 
-border-size = 0
-border-color = #00000000
+; Values applied to all borders
+; Individual side values can be defined using:
+;   border-{left,top,right,bottom}-size
+;   border-{left,top,right,bottom}-color
+; The top and bottom borders are added to the bar height, so the effective
+; window height is:
+;   height + border-top-size + border-bottom-size
+; Meanwhile the effective window width is defined entirely by the width key and
+; the border is placed within this area. So you effectively only have the
+; following horizontal space on the bar:
+;   width - border-right-size - border-left-size
+; border-size can be defined as pixel value (e.g. 35) or percentage (e.g. 50%),
+; the percentage can optionally be extended with a pixel offset like so:
+; 50%:-10, this will result in 50% minus 10 pixels. The percentage is relative
+; to the monitor width or height depending on the border direction. 
+border-size =
+border-color =
 
-padding-left = 3
-padding-right = 2
+; Number of spaces to add at the beginning/end of the bar
+; Individual side values can be defined using:
+;   padding-{left,right}
+padding = 0
 
-module-margin-left = 1
-module-margin-right = 2
+; Number of spaces to add before/after each module
+; Individual side values can be defined using:
+;   module-margin-{left,right}
+module-margin = 0
 
-font-0 = hermit:pixelsize=8;antialias=true;1
-font-1 = unifont:fontformat=truetype:size=8:antialias=false;0
-font-2 = siji:pixelsize=10;1
+; Fonts are defined using <font-name>;<vertical-offset>
+; Font names are specified using a fontconfig pattern.
+;   font-0 = NotoSans-Regular:size=8;2
+;   font-1 = MaterialIcons:size=10
+;   font-2 = Termsynu:size=8;-1
+;   font-3 = FontAwesome:size=10
+; See the Fonts wiki page for more details
+font-0 = NotoSans-Regular:size=8;2
 
-modules-left = xwindow
+; Modules are added to one of the available blocks
+;   modules-left = cpu ram
+;   modules-center = xwindow xbacklight
+;   modules-right = ipc clock
+modules-left = date
 modules-center = 
-modules-right = filesystem pulseaudio memory cpu wlan date
+modules-right = pulseaudio
 
-cursor-click = pointer
-cursor-scroll = ns-resize
-
-[bar/example]
-monitor = HDMI-3
-width = 100%
-height = 27
-;offset-x = 1%
-;offset-y = 1%
-radius = 0.0
-fixed-center = false
-
-background = ${colors.background}
-foreground = ${colors.foreground}
-
-line-size = 3
-line-color = #f00
-
-border-size = 0
-border-color = #00000000
-
-padding-left = 3
-padding-right = 2
-
-module-margin-left = 1
-module-margin-right = 2
-
-font-0 = hermit:pixelsize=8;antialias=true;1
-font-1 = unifont:fontformat=truetype:size=8:antialias=false;0
-font-2 = siji:pixelsize=10;1
-
-modules-left = xwindow
-modules-center = 
-modules-right = filesystem pulseaudio memory cpu wlan date
-
-tray-position = right
-tray-padding = 2
-;tray-transparent = true
-;tray-background = #0063ff
-
-;wm-restack = bspwm
-;wm-restack = i3
-
-;override-redirect = true
-
-;scroll-up = bspwm-desknext
-;scroll-down = bspwm-deskprev
-
-;scroll-up = i3wm-wsnext
-;scroll-down = i3wm-wsprev
-
-cursor-click = pointer
-cursor-scroll = ns-resize
-
-[module/xwindow]
-type = internal/xwindow
-label = %title:0:30:...%
-
-[module/xkeyboard]
-type = internal/xkeyboard
-blacklist-0 = num lock
-
-format-prefix = " "
-format-prefix-foreground = ${colors.foreground-alt}
-format-prefix-underline = ${colors.secondary}
-
-label-layout = %layout%
-label-layout-underline = ${colors.secondary}
-
-label-indicator-padding = 2
-label-indicator-margin = 1
-label-indicator-background = ${colors.secondary}
-label-indicator-underline = ${colors.secondary}
-
-[module/filesystem]
-type = internal/fs
-interval = 25
-
-mount-0 = /
-
-label-mounted = %{F#0a81f5}%mountpoint%%{F-}: %percentage_used%%
-label-unmounted = %mountpoint% not mounted
-label-unmounted-foreground = ${colors.foreground-alt}
-
-[module/mpd]
-type = internal/mpd
-format-online = <label-song>  <icon-prev> <icon-stop> <toggle> <icon-next>
-
-icon-prev = 
-icon-stop = 
-icon-play = 
-icon-pause = 
-icon-next = 
-
-label-song-maxlen = 25
-label-song-ellipsis = true
-
-[module/cpu]
-type = internal/cpu
-interval = 2
-;format-prefix = " "
-format-prefix-foreground = ${colors.foreground-alt}
-format-underline = #f90000
-label = CPU: %percentage:2%%
-
-[module/memory]
-type = internal/memory
-interval = 2
-;format-prefix = " "
-format-prefix-foreground = ${colors.foreground-alt}
-format-underline = #4bffdc
-label = MEM: %percentage_used%%
-
-[module/wlan]
-type = internal/network
-interface = wlp6s0
-interval = 3.0
-
-format-connected = <label-connected>
-format-connected-underline = #9f78e1
-label-connected = %essid%
-
-format-disconnected =
-;format-disconnected = <label-disconnected>
-;format-disconnected-underline = ${self.format-connected-underline}
-;label-disconnected = %ifname% disconnected
-;label-disconnected-foreground = ${colors.foreground-alt}
-
-ramp-signal-0 = | 
-ramp-signal-1 = |
-ramp-signal-2 = |
-ramp-signal-3 = |
-ramp-signal-4 = |
-ramp-signal-foreground = ${colors.foreground-alt}
-
-[module/eth]
-type = internal/network
-interface = enp3s0
-interval = 3.0
-
-format-connected-underline = #55aa55
-;format-connected-prefix = " "
-format-connected-prefix-foreground = ${colors.foreground-alt}
-label-connected = %local_ip%
-
-format-disconnected =
-;format-disconnected = <label-disconnected>
-;format-disconnected-underline = ${self.format-connected-underline}
-;label-disconnected = %ifname% disconnected
-;label-disconnected-foreground = ${colors.foreground-alt}
+; The separator will be inserted between the output of each module
+; This has the same properties as a label
+separator =
 
 [module/date]
 type = internal/date
-interval = 5
 
-date = " %Y-%m-%d"
-date-alt = " %Y-%m-%d"
+; Seconds to sleep between updates
+; Default: 1.0
+interval = 1.0
 
-time = %H:%M
+; See "https://en.cppreference.com/w/cpp/io/manip/put_time" for details on how to format the date string
+; NOTE: if you want to use syntax tags here you need to use %%{...}
+date = %b %d, %Y
+
+; Optional time format
+time = %I:%M %p
+
+; if `date-alt` or `time-alt` is defined, clicking
+; the module will toggle between formats
+date-alt = %A, %d %B %Y
 time-alt = %H:%M:%S
 
-;format-prefix = " "
-format-prefix-foreground = ${colors.foreground-alt}
-format-underline = #0a6cf5
-
-label = %date% %time%
+format = <label>
+label = %{B#63B0B0}   %date%   %{B-}  %time%
 
 [module/pulseaudio]
 type = internal/pulseaudio
 
-format-volume = <label-volume> <bar-volume>
-label-volume = VOL %percentage%%
-label-volume-foreground = ${root.foreground}
+; Sink to be used, if it exists (find using `pacmd list-sinks`, name field)
+; If not, uses default sink
+sink = 
 
-label-muted =  muted
-label-muted-foreground = #666
+; Use PA_VOLUME_UI_MAX (~153%) if true, or PA_VOLUME_NORM (100%) if false
+; Default: true
+use-ui-max = true
 
-bar-volume-width = 10
-bar-volume-foreground-0 = #55aa55
-bar-volume-foreground-1 = #55aa55
-bar-volume-foreground-2 = #55aa55
-bar-volume-foreground-3 = #55aa55
-bar-volume-foreground-4 = #55aa55
-bar-volume-foreground-5 = #f5a70a
-bar-volume-foreground-6 = #ff5555
-bar-volume-gradient = false
-bar-volume-indicator = |
-bar-volume-indicator-font = 2
-bar-volume-fill = ─
-bar-volume-fill-font = 2
-bar-volume-empty = ─
-bar-volume-empty-font = 2
-bar-volume-empty-foreground = ${colors.foreground-alt}
+; Interval for volume increase/decrease (in percent points)
+; Default: 5
+interval = 5
 
-[module/alsa]
-type = internal/alsa
-
-format-volume = <label-volume> <bar-volume>
-label-volume = VOL
-label-volume-foreground = ${root.foreground}
-
-;format-muted-prefix = " "
-format-muted-foreground = ${colors.foreground-alt}
-label-muted = sound muted
-
-bar-volume-width = 10
-bar-volume-foreground-0 = #55aa55
-bar-volume-foreground-1 = #55aa55
-bar-volume-foreground-2 = #55aa55
-bar-volume-foreground-3 = #55aa55
-bar-volume-foreground-4 = #55aa55
-bar-volume-foreground-5 = #f5a70a
-bar-volume-foreground-6 = #ff5555
-bar-volume-gradient = false
-bar-volume-indicator = |
-bar-volume-indicator-font = 2
-bar-volume-fill = ─
-bar-volume-fill-font = 2
-bar-volume-empty = ─
-bar-volume-empty-font = 2
-bar-volume-empty-foreground = ${colors.foreground-alt}
-
-[module/temperature]
-type = internal/temperature
-thermal-zone = 0
-warn-temperature = 60
-
-format = <ramp> <label>
-format-underline = #f50a4d
-format-warn = <ramp> <label-warn>
-format-warn-underline = ${self.format-underline}
-
-label = %temperature-c%
-label-warn = %temperature-c%
-label-warn-foreground = ${colors.secondary}
-
-ramp-0 = -
-ramp-1 = -
-ramp-2 = -
-ramp-foreground = ${colors.foreground-alt}
-
-[settings]
-screenchange-reload = true
-;compositing-background = xor
-;compositing-background = screen
-;compositing-foreground = source
-;compositing-border = over
-
-[global/wm]
-margin-top = 5
-margin-bottom = 5
-
-; vim:ft=dosini
+label-volume = "  Volume: %percentage%%  "  
+label-volume-background = #e91e63
+label-volume-foreground = #fff
