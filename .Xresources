@@ -2,41 +2,41 @@ URxvt.font:   xft:DejaVu Sans Mono:pixelsize=12:antialias=true:hinting=true
 URxvt.boldFont:  xft:DejaVu Sans Mono:bold:pixelsize=12:antialias=true:hinting=true
 
 ! special
-*.foreground:   #ffffff
-*.background:   #000000
-*.cursorColor:  #ffffff
+*.foreground:   #f1f1f1
+*.background:   #0a0a0a
+*.cursorColor:  #f1f1f1
 
 ! black
-*.color0:       #151515
-*.color8:       #696969
+*.color0:       #515151
+*.color8:       #404040
 
 ! red
-*.color1:       #ff8eaf
-*.color9:       #ed4c7a
+*.color1:       #e84f4f
+*.color9:       #d23d3d
 
 ! green
-*.color2:       #a6e25f
-*.color10:      #a6e179
+*.color2:       #65d45b
+*.color10:      #65d45b
 
 ! yellow
-*.color3:       #f8e578
-*.color11:      #ffdf6b
+*.color3:       #65d45b
+*.color11:      #f39d21
 
 ! blue
-*.color4:       #a6e2f0
-*.color12:      #79d2ff
+*.color4:       #7dc1cf
+*.color12:      #4e9fb1
 
 ! magenta
-*.color5:       #e85b92
-*.color13:      #bb5d79
+*.color5:       #ff9af1
+*.color13:      #ff9af1
 
 ! cyan
-*.color6:       #5f868f
-*.color14:      #87a8af
+*.color6:       #89ccdc
+*.color14:      #60a3b1
 
 ! white
-*.color7:       #d5f1f2
-*.color15:      #e2f1f6
+*.color7:       #121111
+*.color15:      #dadada
 
 xterm*ScrollBar: false
 
