@@ -31,7 +31,7 @@ fixed-center = true
 ; Dimension defined as pixel value (e.g. 35) or percentage (e.g. 50%),
 ; the percentage can optionally be extended with a pixel offset like so:
 ; 50%:-10, this will result in a width or height of 50% minus 10 pixels
-width = 100%
+width = 170
 height = 25
 
 ; Offset defined as pixel value (e.g. 35) or percentage (e.g. 50%)
@@ -51,7 +51,7 @@ foreground = #000
 ; Individual values can be defined using:
 ;   {overline,underline}-size
 ;   {overline,underline}-color
-line-size = 0
+line-size = 3
 line-color = #f00
 
 ; Values applied to all borders
@@ -69,8 +69,8 @@ line-color = #f00
 ; the percentage can optionally be extended with a pixel offset like so:
 ; 50%:-10, this will result in 50% minus 10 pixels. The percentage is relative
 ; to the monitor width or height depending on the border direction. 
-border-size =
-border-color =
+border-top-size = 4
+border-color = #ae95c7
 
 ; Number of spaces to add at the beginning/end of the bar
 ; Individual side values can be defined using:
@@ -80,7 +80,7 @@ padding = 0
 ; Number of spaces to add before/after each module
 ; Individual side values can be defined using:
 ;   module-margin-{left,right}
-module-margin = 0
+module-margin-right = 3
 
 ; Fonts are defined using <font-name>;<vertical-offset>
 ; Font names are specified using a fontconfig pattern.
@@ -95,9 +95,9 @@ font-0 = NotoSans-Regular:size=8;2
 ;   modules-left = cpu ram
 ;   modules-center = xwindow xbacklight
 ;   modules-right = ipc clock
-modules-left = date
-modules-center = 
-modules-right = pulseaudio
+modules-left =
+modules-center = date pulseaudio
+modules-right = 
 
 ; The separator will be inserted between the output of each module
 ; This has the same properties as a label
@@ -112,7 +112,7 @@ interval = 1.0
 
 ; See "https://en.cppreference.com/w/cpp/io/manip/put_time" for details on how to format the date string
 ; NOTE: if you want to use syntax tags here you need to use %%{...}
-date = %b %d, %Y
+date = %b %d
 
 ; Optional time format
 time = %I:%M %p
@@ -123,7 +123,7 @@ date-alt = %A, %d %B %Y
 time-alt = %H:%M:%S
 
 format = <label>
-label = %{B#63B0B0}   %date%   %{B-}  %time%
+label ="  %date%  <%time%>"
 
 [module/pulseaudio]
 type = internal/pulseaudio
@@ -140,6 +140,4 @@ use-ui-max = true
 ; Default: 5
 interval = 5
 
-label-volume = "  Volume: %percentage%%  "  
-label-volume-background = #e91e63
-label-volume-foreground = #fff
+label-volume = " Vol: %percentage%% " 
